@@ -1,0 +1,16 @@
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\MyBankAPP.exe
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\MyBankAPP.deps.json
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\MyBankAPP.runtimeconfig.json
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\MyBankAPP.runtimeconfig.dev.json
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\MyBankAPP.dll
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\MyBankAPP.pdb
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.csproj.AssemblyReference.cache
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.AssemblyInfoInputs.cache
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.AssemblyInfo.cs
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.csproj.CoreCompileInputs.cache
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.dll
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\refint\MyBankAPP.dll
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.pdb
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.genruntimeconfig.cache
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\ref\MyBankAPP.dll
