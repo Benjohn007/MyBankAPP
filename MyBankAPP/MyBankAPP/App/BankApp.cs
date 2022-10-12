@@ -15,6 +15,7 @@ namespace MyBankAPP.App
         private List<UserAccount> UserAccountList;
         private UserAccount selectedAccount;
         private List<Transaction> _listOfTransaction;
+        private const decimal minimumKeptAmount = 500;
 
         public void Run()
         {
@@ -107,7 +108,7 @@ namespace MyBankAPP.App
                     break;
 
                 case (int)MenuApp.MakeWithdrawal:
-                    Console.WriteLine("Making Withdrawal...");
+                    MakeWithdrawal();
                     break;
 
                 case (int)MenuApp.InTransfer:
@@ -174,12 +175,61 @@ namespace MyBankAPP.App
 
             //print success message
             Utility.Utility.PrintMessage($"Your deposit of {Utility.Utility.FormatAmount(transaction_amt)} was " +
-                $"succuful.", true);
+                $"successful.", true);
         }
 
         public void MakeWithdrawal()
         {
-            throw new NotImplementedException();
+            var transaction_amt = 0;
+            int selectedAmount = AppScreen.SelectAmount();
+
+            if (selectedAmount == -1)
+            {
+                selectedAmount = AppScreen.SelectAmount();
+            }
+            else if (selectedAmount != 0)
+            {
+                transaction_amt = selectedAmount;
+            }
+            else
+            {
+                transaction_amt = Validator.Convert<int>($"amount {AppScreen.cur}");
+            }
+
+            //input validation
+            if (transaction_amt <= 0)
+            {
+                Utility.Utility.PrintMessage("Amount must be greater than zero. try again", false);
+                return;
+            }
+            if (transaction_amt % 500 != 0)
+            {
+                Utility.Utility.PrintMessage("You can only withdraw in multiples of 500 and 100. try again", false);
+                return;
+
+            }
+
+            //Businee login
+            if (transaction_amt > selectedAccount.AccountBalance)
+            {
+                Utility.Utility.PrintMessage($"Withdrawal failed.Your balance is too lower to withdraw " +
+                    $"{Utility.Utility.FormatAmount(transaction_amt)}", false);
+                return;
+            }
+            if ((selectedAccount.AccountBalance - transaction_amt) < minimumKeptAmount)
+            {
+                Utility.Utility.PrintMessage($"Withdrawal failed. your account need to have " +
+                    $"minimum of {Utility.Utility.FormatAmount(minimumKeptAmount)}", false);
+            }
+
+            //Bind withdraw details with transaction object
+            InsertTransaction(selectedAccount.Id, TransactionType.Withdrawal, -transaction_amt, "");
+
+            //update account balance
+            selectedAccount.AccountBalance -= transaction_amt;
+
+            //success message
+            Utility.Utility.PrintMessage($"Your have successfully withdrawn {Utility.Utility.FormatAmount(selectedAmount)}.", true);
         }
         private bool PreviewBankNotesCount(int amount)
         {
@@ -191,7 +241,7 @@ namespace MyBankAPP.App
             Console.WriteLine($"{AppScreen.cur}500 X {FivehundredNotesCount} = {500 * FivehundredNotesCount}");
             Console.WriteLine($"Total amount: {Utility.Utility.FormatAmount(amount)}\n\n");
 
-            int opt = Validator.Convert<int>("1 to Confirm");
+            int opt = Validator.Convert<int>("1 to Confirm : ");
             return opt.Equals(1);
 
 
