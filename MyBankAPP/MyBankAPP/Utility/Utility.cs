@@ -10,7 +10,13 @@ namespace MyBankAPP.Utility
 {
     public static class Utility
     {
+        private static long tranId;
         private static CultureInfo culture = new CultureInfo("ng-NG");
+
+        public static long GetTransactionId()
+        {
+            return ++tranId;
+        }
         public static string GetSecretInput(string prompt)
         {
             bool isPrompt = true;

@@ -6,7 +6,7 @@ using System.Threading;
 using MyBankAPP.Utility;
 using MyBankAPP.Domain.Enums;
 using MyBankAPP.Entity;
-using System.Transactions;
+using MyBankAPP.Domain.Entity;
 
 namespace MyBankAPP.App
 {
@@ -14,6 +14,7 @@ namespace MyBankAPP.App
     {
         private List<UserAccount> UserAccountList;
         private UserAccount selectedAccount;
+        private List<Transaction> _listOfTransaction;
 
         public void Run()
         {
@@ -33,6 +34,8 @@ namespace MyBankAPP.App
                 new UserAccount{Id=2, FullName = "Akorede Kikelomo", AccountNumber =560987,CardNumber =123111, CardPin=111111, AccountBalance=7000.00m, IsLocked=false},
                 new UserAccount{Id=3, FullName = "Benjamin John", AccountNumber =223345,CardNumber =123000, CardPin=000419, AccountBalance=5000.00m, IsLocked=true},
            };
+
+            _listOfTransaction = new List<Transaction>();  
         }
 
 
@@ -100,7 +103,7 @@ namespace MyBankAPP.App
                     break;
 
                 case (int)MenuApp.Deposit:
-                    Console.WriteLine("Placing Deposit...");
+                    Deposit();
                     break;
 
                 case (int)MenuApp.MakeWithdrawal:
@@ -134,21 +137,82 @@ namespace MyBankAPP.App
 
         public void Deposit()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\nOnly multipls of 500 and 1000 are allowed\n");
+            var transaction_amt = Validator.Convert<int>($"amount {AppScreen.cur}");
+
+            // simulate counting
+
+            Console.WriteLine("\nChecking and Counting bank notes");
+            Utility.Utility.PrintDotAnimation();
+            Console.WriteLine("");
+
+
+            //some functions
+            if (transaction_amt <= 0)
+            {
+                Console.WriteLine("amount needs to be greater than zeros.", false);
+                return;
+            }
+
+            if (transaction_amt % 500 != 0)
+            {
+                Console.WriteLine($"Enter deposit amount in multiples of 500 or 100.", false);
+                return;
+            }
+
+            if (PreviewBankNotesCount(transaction_amt) == false)
+            {
+                Console.WriteLine("You have cancelled your action.", false);
+                return;
+            }
+
+            //bind transaction details to transaction object
+            InsertTransaction(selectedAccount.Id, TransactionType.Deposit, transaction_amt, "");
+
+            //update account balance
+            selectedAccount.AccountBalance += transaction_amt;
+
+            //print success message
+            Utility.Utility.PrintMessage($"Your deposit of {Utility.Utility.FormatAmount(transaction_amt)} was " +
+                $"succuful.", true);
         }
 
         public void MakeWithdrawal()
         {
             throw new NotImplementedException();
         }
+        private bool PreviewBankNotesCount(int amount)
+        {
+            int thousandNotesCount = amount / 1000;
+            int FivehundredNotesCount = (amount % 1000) / 500;
+            Console.WriteLine("\nSummary");
+            Console.WriteLine("----------");
+            Console.WriteLine($"{AppScreen.cur}1000 X {thousandNotesCount} = {1000 * thousandNotesCount}");
+            Console.WriteLine($"{AppScreen.cur}500 X {FivehundredNotesCount} = {500 * FivehundredNotesCount}");
+            Console.WriteLine($"Total amount: {Utility.Utility.FormatAmount(amount)}\n\n");
 
-        public void InsertTransaction(long _UserBankAcountID_, TransactionType _tranType_, decimal _tranAmount_, string _desc)
+            int opt = Validator.Convert<int>("1 to Confirm");
+            return opt.Equals(1);
+
+
+        }
+
+        public void InsertTransaction(long _UserBankAcountID, TransactionType _tranType, decimal _tranAmount, string _desc)
         {
             // create a new transaction object
             var transaction = new Transaction()
             {
                 TransactionId = Utility.Utility.GetTransactionId(),
-           }
+                UserBankAccountId = _UserBankAcountID,
+                TransactionDate = DateTime.Now,
+                TransactionType = _tranType,
+                TransactionAmount = _tranAmount,
+                Description = _desc
+            };
+
+            // add tramsaction object
+
+            _listOfTransaction.Add(transaction);
         }
 
         public void viewTransaction()

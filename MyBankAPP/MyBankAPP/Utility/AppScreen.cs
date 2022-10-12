@@ -10,6 +10,7 @@ namespace MyBankAPP.Utility
 {
     public static class AppScreen
     {
+        internal const string cur = "N ";
         public static void Welcome()
         {
             // clear the console screen
