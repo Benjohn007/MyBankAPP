@@ -14,3 +14,5 @@ C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\refint\
 C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.pdb
 C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.genruntimeconfig.cache
 C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\ref\MyBankAPP.dll
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\bin\Debug\net5.0\ConsoleTables.dll
+C:\Users\Decagon\Desktop\week3 Task\MyBankAPP\MyBankAPP\obj\Debug\net5.0\MyBankAPP.csproj.CopyComplete

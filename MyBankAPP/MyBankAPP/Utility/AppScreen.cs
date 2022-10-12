@@ -1,4 +1,5 @@
-﻿using MyBankAPP.Entity;
+﻿using MyBankAPP.Domain.Entity;
+using MyBankAPP.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace MyBankAPP.Utility
 {
-    public static class AppScreen
+    public class AppScreen
     {
-        internal const string cur = "N ";
+        internal const string cur = " N ";
         public static void Welcome()
         {
             // clear the console screen
@@ -121,12 +122,20 @@ namespace MyBankAPP.Utility
                     break;
                 default:
                     Utility.PrintMessage("Invalid input. try again", false);
-                    SelectAmount();
+                    //SelectAmount();
                     return -1;
                     break;
 
             }
 
+        }
+        internal InternalTransfer InternalTransferForm()
+        {
+            var interTransfer = new InternalTransfer();
+            interTransfer.RecieoentBankAccountNumber = Validator.Convert<long>("recipient's account number: ");
+            interTransfer.TransferAmount = Validator.Convert<decimal>($"amount{cur}");
+            interTransfer.RecieoentBankAccountName = Utility.GetUserInput("recipient's name:");
+            return interTransfer;
         }
     }
 
